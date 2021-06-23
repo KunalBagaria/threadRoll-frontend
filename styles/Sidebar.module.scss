@@ -1,0 +1,31 @@
+.parent {
+    margin-top: calc(40px + 2vw);
+    margin-left: calc(10px + 1vw);
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    width: calc(80px + 8vw);
+    height: calc(20px + 2vw);
+    margin-top: calc(20px + 1vw);
+    cursor: pointer;
+    border-radius: calc(3px + 0.3vw);
+    transition: .2s all;
+    &:hover {
+        background: rgb(73,72,127, 0.08);
+    }
+}
+
+.linkName {
+    font-weight: bold;
+    font-size: calc(5px + 0.7vw);
+    margin-left: calc(3px + 0.4vw);
+}
+
+.icon {
+    margin-left: calc(3px + 0.4vw);
+    display: flex;
+    align-items: center;
+    width: calc(10px + 1vw);
+}
