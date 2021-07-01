@@ -9,3 +9,13 @@
   height: 100%;
   cursor: pointer;
 }
+
+.mainFlex {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+}
+
+.mainContent {
+  margin-left: calc(20px + 2vw);
+}

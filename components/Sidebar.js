@@ -28,8 +28,8 @@ const sidebarLinks = [
 export const Sidebar = ({ active }) => (
     <>
         <div className={styles.parent}>
-            {sidebarLinks.map((link) => (
-                <Link href={link.name === 'Home' ? '/' : `/${link.name.toLowerCase()}`}>
+            {sidebarLinks.map((link, index) => (
+                <Link key={index} href={link.name === 'Home' ? '/' : `/${link.name.toLowerCase()}`}>
                     <div className={styles.button} style={{ background: link.name === active ? 'rgb(73,72,127, 0.15)' : ''}}>
                         <div className={styles.icon}>
                             <Image src={link.icon} alt={`${link.name} Icon`} />
