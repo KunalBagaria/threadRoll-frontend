@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
       <Auth0Provider
         domain={'ar-backend.us.auth0.com'}
         clientId={'7m993ObHaMvcVbWFGAAgHhC4L3esQCwP'}
-        redirectUri={'http://localhost:3000'}>
+        redirectUri={'https://ar-frontend.vercel.app/'}>
           <Component {...pageProps} />
       </Auth0Provider>
     </>
