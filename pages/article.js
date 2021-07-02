@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Meta } from '../components/Meta'
 import { Sidebar } from '../components/Sidebar'
-import { Nav } from '../components/Nav'
 import styles from '../styles/Home.module.scss'
 
 export default function ArticlePage() {
@@ -13,8 +12,7 @@ export default function ArticlePage() {
 
     return (
         <>
-            <Meta title="Article Reader" description="Read articles, your way" />
-            <Nav />
+            <Meta title="Article / readRoll" description="Read articles, your way" />
             <div className={styles.mainFlex}>
                 <Sidebar active="Article" />
             </div>

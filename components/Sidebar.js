@@ -1,43 +1,33 @@
+import { sidebarLinks } from './SidebarLinks'
 import Image from 'next/image'
+import logo from '../images/logo.svg'
 import Link from 'next/link'
-import home from '../images/icons/home.svg'
-import article from '../images/icons/article.svg'
-import saved from '../images/icons/saved.svg'
-import trending from '../images/icons/trending.svg'
 import styles from '../styles/Sidebar.module.scss'
+import homeCss from '../styles/Home.module.scss'
 
-const sidebarLinks = [
-    {
-        name: 'Home',
-        icon: home
-    },
-    {
-        name: 'Article',
-        icon: article,
-    },
-    {
-        name: 'Saved',
-        icon: saved,
-    },
-    {
-        name: 'Trending',
-        icon: trending
-    }
-]
-
-export const Sidebar = ({ active }) => (
+export const Sidebar = ({ active }) => {
+    return (
     <>
         <div className={styles.parent}>
+            <Link href="/">
+                <div className={homeCss.logo}>
+                    <Image src={logo} alt="readRoll Logo" />
+                </div>
+            </Link>
             {sidebarLinks.map((link, index) => (
                 <Link key={index} href={link.name === 'Home' ? '/' : `/${link.name.toLowerCase()}`}>
-                    <div className={styles.button} style={{ background: link.name === active ? 'rgb(73,72,127, 0.15)' : ''}}>
+                    <div className={styles.button}>
                         <div className={styles.icon}>
-                            <Image src={link.icon} alt={`${link.name} Icon`} />
+                            <Image src={link.icon} alt={`${link.name} Icon`} className={link.name === active ? styles.activeIcon : ''} />
                         </div>
-                        <p className={styles.linkName}>{link.name}</p>
+                        <p className={styles.linkName} style={{ color: link.name === active ? 'rgb(29, 161, 242)' : 'white'}}>{link.name}</p>
                     </div>
                 </Link>
             ))}
-        </div>
+            <div className={styles.parseBtn} id="parse-btn">
+                <p style={{ color: 'white' }}>Parse</p>
+            </div>
+            </div>
     </>
-)
+    )
+}

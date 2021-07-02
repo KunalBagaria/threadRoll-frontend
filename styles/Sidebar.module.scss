@@ -1,31 +1,53 @@
 .parent {
-    margin-top: calc(20px + 1vw);
-    margin-left: calc(10px + 1vw);
+    margin-left: calc(20px + 2vw);
+    height: 100vh;
+    padding-right: calc(10px + 1vw);
+    border-right: 0.1vw solid rgb(255, 255, 255, 0.2);
 }
 
 .button {
     display: flex;
     align-items: center;
     width: calc(80px + 8vw);
-    height: calc(20px + 2vw);
+    height: calc(23px + 2vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;
-    border-radius: calc(3px + 0.3vw);
-    transition: .2s all;
+    border-radius: calc(15px + 1vw);
     &:hover {
-        background: rgb(73,72,127, 0.08);
+        background: rgb(29, 161, 242, 0.16);
     }
 }
 
 .linkName {
     font-weight: bold;
     font-size: calc(8px + 0.5vw);
-    margin-left: calc(3px + 0.4vw);
+    margin-left: calc(5px + 0.7vw);
 }
 
 .icon {
-    margin-left: calc(5px + 0.5vw);
+    margin-left: calc(7px + 0.7vw);
     display: flex;
     align-items: center;
-    width: calc(12px + 1vw);
+    width: calc(15px + 1vw);
+}
+
+.activeIcon {
+    stroke: rgb(29, 161, 242);
+}
+
+.parseBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(80px + 8vw);
+    height: calc(23px + 2vw);
+    margin-top: calc(20px + 1vw);
+    cursor: pointer;
+    border-radius: calc(15px + 1vw);
+    background: rgb(29, 161, 242);
+    transition: .3s all;
+    font-size: calc(8px + 0.5vw);
+    &:hover {
+        background: rgb(29, 161, 242, 0.7);
+    }
 }
