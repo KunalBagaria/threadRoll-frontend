@@ -1,34 +1,46 @@
+import { useEffect, useState } from 'react'
+import { fetchArticles } from '../components/components'
 import { Meta } from '../components/Meta'
 import { Sidebar } from '../components/Sidebar'
-import { useAuth0 } from "@auth0/auth0-react";
 import styles from '../styles/Home.module.scss'
 
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
-};
-
 export default function Home() {
-  const {
-    user,
-    isAuthenticated,
-    isLoading,
-    getAccessTokenSilently,
-  } = useAuth0();
-
+  const [articles, setArticles] = useState([])
+  useEffect(() => {
+    fetchArticles(setArticles)
+  }, [fetchArticles])
   return (
     <>
-      <Meta title="Home / readRoll" description="Read articles, your way" />
+      <Meta title="Home / readRoll" description="Read articles in a Twitter thread" />
       <div className={styles.mainFlex}>
+
         <Sidebar active="Home" />
+
         <div className={styles.mainContent}>
-          {/* {!isAuthenticated && (
-            <LoginButton />
-          )}
-          {isAuthenticated && (
-            <button onClick={() => console.log(user)}>User</button>
-          )} */}
+          <div className={styles.nav}>
+            <h1 className={styles.pageName}>Home</h1>
+          </div>
+
+          <div className={styles.overFlowY}>
+
+            <div className={styles.parseParent}>
+              {/* Add the parse option here */}
+              <div className={styles.divider}>
+              </div>
+            </div>
+
+            {articles[0] && (
+              // Add tweet Design in this
+              articles.map((article, index) => (
+                <p style={{ color: 'white' }}>{article.title}</p>
+              ))
+            )}
+
+          </div>
         </div>
+        
+        {/* Right Sidebar Here */}
+
       </div>
     </>
   )

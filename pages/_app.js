@@ -5,9 +5,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Auth0Provider
-        domain={'ar-backend.us.auth0.com'}
-        clientId={'7m993ObHaMvcVbWFGAAgHhC4L3esQCwP'}
-        redirectUri={'http://localhost:3000'}>
+        domain={'readroll.us.auth0.com'}
+        clientId={'viosHeutTbCFxVHBFEW50IVWasO00JRc'}
+        redirectUri={'https://readroll.vercel.app'}>
           <Component {...pageProps} />
       </Auth0Provider>
     </>

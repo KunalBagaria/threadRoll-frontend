@@ -1,15 +1,20 @@
 .parent {
-    margin-left: calc(20px + 2vw);
+    margin-left: calc(35px + 3.5vw);
     height: 100vh;
-    padding-right: calc(10px + 1vw);
-    border-right: 0.1vw solid rgb(255, 255, 255, 0.2);
+    padding-right: calc(30px + 2.5vw);
+    & {
+        @media only screen and (max-width: 600px) {
+            margin-left: calc(10px + 1vw);
+            padding-right: calc(15px + 1vw);
+        }
+    }
 }
 
 .button {
     display: flex;
     align-items: center;
-    width: calc(80px + 8vw);
-    height: calc(23px + 2vw);
+    width: calc(70px + 7vw);
+    height: calc(20px + 1.8vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;
     border-radius: calc(15px + 1vw);
@@ -39,8 +44,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(80px + 8vw);
-    height: calc(23px + 2vw);
+    width: calc(70px + 7vw);
+    height: calc(20px + 1.8vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;
     border-radius: calc(15px + 1vw);
