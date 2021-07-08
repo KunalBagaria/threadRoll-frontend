@@ -1,0 +1,24 @@
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-bottom: 0.1vw solid rgb(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: .3s all;
+    &:hover {
+        background: rgb(255, 255, 255, 0.04);
+    }
+}
+
+.cover {
+    max-width: 90%;
+    border-radius: calc(10px + 0.5vw);
+    border: 12px;
+    margin-bottom: calc(20px + 1vw);
+}
+
+.title {
+    font-size: calc(10px + 0.4vw);
+    width: 90%;
+}

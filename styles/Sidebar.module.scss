@@ -1,10 +1,15 @@
 .parent {
-    margin-left: calc(35px + 3.5vw);
+    display: flex;
+    flex-direction: column;
+    width: 25%;
     height: 100vh;
-    padding-right: calc(30px + 2.5vw);
+    align-items: center;
+    padding-right: calc(10px + 1vw);
     & {
         @media only screen and (max-width: 600px) {
             margin-left: calc(10px + 1vw);
+        }
+        @media only screen and (max-width: 900px) {
             padding-right: calc(15px + 1vw);
         }
     }
