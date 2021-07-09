@@ -1,22 +1,36 @@
 @font-face {
-  font-family: "HNFont";
-  src: url("/fonts/HelveticaNeue/HelveticaNeue.ttf");
+  font-family: "SFont";
+  src: url("/fonts/SF/SF-Pro-Display-Regular.otf");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: "HNFont";
-  src: url("/fonts/HelveticaNeue/HelveticaNeue-Medium.ttf");
+  font-family: "SFont";
+  src: url("/fonts/SF/SF-Pro-Display-Medium.otf");
   font-style: normal;
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
-  font-family: "HNFont";
-  src: url("/fonts/HelveticaNeue/HelveticaNeue-Bold.ttf");
+  font-family: "SFont";
+  src: url("/fonts/SF/SF-Pro-Display-Bold.otf");
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SFont";
+  src: url("/fonts/SF/SF-Pro-Display-Heavy.otf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SFont";
+  src: url("/fonts/SF/SF-Pro-Display-Black.otf");
+  font-style: normal;
+  font-weight: 800;
   font-display: swap;
 }
 
@@ -24,7 +38,7 @@ html,
 body {
   padding: 0 auto;
   margin: 0;
-  font-family: HNFont;
+  font-family: SFont;
   background: black;
   color: white;
 }

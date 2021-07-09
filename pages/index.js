@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { Animation } from '../components/Animation'
 import Loading from '../components/Animations/Loading.json'
 import { fetchArticles } from '../components/components'
@@ -13,6 +14,7 @@ export default function Home() {
   const [articles, setArticles] = useState([])
   const [link, setLink] = useState()
   const [red, setRed] = useState(false)
+  const router = useRouter()
 
   const {
     user,
@@ -63,7 +65,12 @@ export default function Home() {
                       }
                     }} className={styles.articleInput} placeholder="Enter an article link"/>
                     <div className={styles.smallDivider} style={{ background: red ? 'rgb(255, 0, 0, 0.4)' : ''}}></div>
-                    <button className={styles.parseBtn} disabled={link ? false : true}>Parse</button>
+                    <button onClick={(e) => {
+                      e.preventDefault()
+                      if (link) {
+                        router.push(`article?url=${link}`)
+                      }
+                    }} className={styles.parseBtn} disabled={link ? false : true}>Parse</button>
                   </div>
                 </div>
 
