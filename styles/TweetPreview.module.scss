@@ -1,13 +1,13 @@
 .parent {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-around;
     width: 100%;
     border-bottom: 0.1vw solid rgb(255, 255, 255, 0.2);
     cursor: pointer;
     transition: .3s all;
     &:hover {
-        background: rgb(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.04);
     }
 }
 
@@ -21,4 +21,49 @@
 .title {
     font-size: calc(10px + 0.4vw);
     width: 90%;
+    margin-top: 6px;
+    color: rgb(255, 255, 255, 0.8);
+}
+
+.profile {
+    border-radius: 100%;
+    width: calc(25px + 1.5vw);
+    margin-left: 3.5%;
+    margin-top: 2.5%;
+}
+
+.content {
+    width: 90%;
+    margin-left: 2.5%;
+}
+
+.publishing {
+    display: flex;
+    margin-top: calc(8px + 0.4vw);
+}
+
+.publishing p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: calc(10px + 0.4vw);
+}
+
+.author {
+    font-weight: 500;
+}
+
+.source {
+    color: #697179;
+    margin-left: 6px;
+}
+
+.verified {
+    margin-left: 6px;
+    width: calc(10px + 0.5vw);
+    height: calc(10px + 0.5vw);
+}
+
+.date {
+    color: #697179;
+    margin-left: 6px;
 }

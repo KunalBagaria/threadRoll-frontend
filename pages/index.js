@@ -49,7 +49,7 @@ export default function Home() {
                 <>
                 {/* Add the parse option here */}
                 <div className={styles.parseChild}>
-                  <img className={styles.profilePicture} src={user?.picture ? user.picture : 'https://res.cloudinary.com/kunalbagaria/image/upload/v1625679667/default_bxpc7i.jpg'} alt="Profile Picture" />
+                  <img className={styles.profilePicture} src={user?.picture ? user.picture : 'https://i.imgur.com/9AMrjnG.jpg'} alt="Profile Picture" />
                   <div>
                     <input style={{ color: link ? 'white' : ''}} onChange={(e) => {
                       const regex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;

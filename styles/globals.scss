@@ -1,10 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+  font-family: "HNFont";
+  src: url("/fonts/HelveticaNeue/HelveticaNeue.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "HNFont";
+  src: url("/fonts/HelveticaNeue/HelveticaNeue-Medium.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "HNFont";
+  src: url("/fonts/HelveticaNeue/HelveticaNeue-Bold.ttf");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
 
 html,
 body {
   padding: 0 auto;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: HNFont;
   background: black;
   color: white;
 }
