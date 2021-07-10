@@ -2,6 +2,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
+    overflow: hidden;
     width: 100%;
     border-bottom: 0.1vw solid rgb(255, 255, 255, 0.2);
     cursor: pointer;
@@ -15,7 +16,6 @@
     max-width: 90%;
     border-radius: calc(10px + 0.5vw);
     border: 12px;
-    margin-bottom: calc(20px + 1vw);
 }
 
 .title {
@@ -46,15 +46,22 @@
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: calc(10px + 0.4vw);
+    width: max-content;
 }
 
 .author {
     font-weight: 500;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .source {
     color: #697179;
     margin-left: 6px;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .verified {
@@ -66,4 +73,46 @@
 .date {
     color: #697179;
     margin-left: 6px;
+}
+
+.buttons {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    margin-bottom: calc(5px + 0.5vw);
+}
+
+.icon {
+    width: calc(7px + 0.7vw);
+    height: calc(7px + 0.7vw);
+}
+
+.iconParent {
+    margin-top: calc(5px + 0.5vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: calc(11px + 1vw);
+    height: calc(11px + 1vw);
+    transition: .3s all;
+    position: relative;
+    &:hover {
+        background: rgb(224, 36, 94, 0.5);
+    }
+}
+
+.iconParentNoHover {
+    margin-top: calc(5px + 0.5vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: calc(11px + 1vw);
+    height: calc(11px + 1vw);
+    transition: .3s all;
+    position: relative;
+    cursor: default;
 }

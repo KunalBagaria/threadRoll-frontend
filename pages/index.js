@@ -14,6 +14,7 @@ export default function Home() {
   const [articles, setArticles] = useState([])
   const [link, setLink] = useState()
   const [red, setRed] = useState(false)
+  const [loading, setLoading] = useState(true)
   const router = useRouter()
 
   const {
@@ -22,7 +23,7 @@ export default function Home() {
   } = useAuth0()
 
   useEffect(() => {
-    fetchArticles(setArticles)
+    fetchArticles(setArticles, setLoading)
   }, [fetchArticles])
 
   return (
@@ -52,7 +53,7 @@ export default function Home() {
                 {/* Add the parse option here */}
                 <div className={styles.parseChild}>
                   <img className={styles.profilePicture} src={user?.picture ? user.picture : 'https://i.imgur.com/9AMrjnG.jpg'} alt="Profile Picture" />
-                  <div>
+                  <div className={styles.parseStuff}>
                     <input style={{ color: link ? 'white' : ''}} onChange={(e) => {
                       const regex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
                       const input = e.target.value;
@@ -64,7 +65,7 @@ export default function Home() {
                         setRed(true)
                       }
                     }} className={styles.articleInput} placeholder="Enter an article link"/>
-                    <div className={styles.smallDivider} style={{ background: red ? 'rgb(255, 0, 0, 0.4)' : ''}}></div>
+                    <div className={styles.smallDivider} style={{ background: red ? 'rgb(255, 0, 0, 0.45)' : ''}}></div>
                     <button onClick={(e) => {
                       e.preventDefault()
                       if (link) {
@@ -80,9 +81,14 @@ export default function Home() {
             </div>
             
             <div className={styles.tweetsFlex}>
-              {articles[0] && (
-                
-                // Add tweet Design in this
+              {loading && (
+                <div className={styles.loading}>
+                  <div style={{ width: 'calc(40px + 1vw)', height: 'calc(40px + 1vw)', marginTop: '10vh' }}>
+                    <Animation json={Loading} />
+                  </div>
+                </div>
+              )}
+              {!loading && articles[0] && (
                 articles.map((article, index) => (
                   <TweetPreview data={article} index={index} />
                 ))
