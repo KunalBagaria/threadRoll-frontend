@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { AvatarGenerator } from 'random-avatar-generator';
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
 import styles from '../styles/TweetPreview.module.scss'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import { useRouter } from 'next/router'
 import reply from '../images/icons/tweet/reply.svg'
 import like from '../images/icons/tweet/like.svg'
 import retweet from '../images/icons/tweet/retweet.svg'
 import share from '../images/icons/tweet/share.svg'
 
-export const TweetPreview = ({ data }) => {
+export const Tweet = ({ data, content, avatar, index }) => {
     const [date, setDate] = useState()
-    const router = useRouter();
     const icons = [reply, retweet, like, share];
-    const generator = new AvatarGenerator();
     const { user } = useAuth0()
 
     useEffect(() => {
@@ -38,8 +34,8 @@ export const TweetPreview = ({ data }) => {
     }
 
     return (
-        <div className={styles.parent} onClick={() => router.push(`article?url=${data.url}`)}>
-            <img src={generator.generateRandomAvatar()} alt="Profile Picture" className={styles.profile}></img>
+        <div className={styles.parent}>
+            <img src={avatar} alt="Profile Picture" className={styles.profile}></img>
             <div className={styles.content}>
                 <div className={styles.publishing}>
                     <p className={styles.author}>{data.author ? data.author : 'Unknown'}</p>
@@ -52,8 +48,10 @@ export const TweetPreview = ({ data }) => {
                     <p className={styles.date}>• {date ? date : 'Unknown'}</p>
                     
                 </div>
-                <p className={styles.title}>{data.title}</p>
-                <img src={data.image} alt="" className={styles.cover} />
+                <p className={styles.title}>{content}</p>
+                {index === 0 && (
+                    <img src={data.image} alt="" className={styles.cover} />
+                )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
                         <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : styles.iconParent}>

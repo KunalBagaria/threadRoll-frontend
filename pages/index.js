@@ -90,7 +90,7 @@ export default function Home() {
               )}
               {!loading && articles[0] && (
                 articles.map((article, index) => (
-                  <TweetPreview data={article} index={index} />
+                  <TweetPreview data={article} key={index} />
                 ))
               )}
             </div>

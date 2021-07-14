@@ -85,6 +85,10 @@
 .icon {
     width: calc(7px + 0.7vw);
     height: calc(7px + 0.7vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .iconParent {
@@ -94,8 +98,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: calc(11px + 1vw);
-    height: calc(11px + 1vw);
+    width: calc(13px + 1vw);
+    height: calc(13px + 1vw);
     transition: .3s all;
     position: relative;
     &:hover {
@@ -110,8 +114,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: calc(11px + 1vw);
-    height: calc(11px + 1vw);
+    width: calc(13px + 1vw);
+    height: calc(13px + 1vw);
     transition: .3s all;
     position: relative;
     cursor: default;
