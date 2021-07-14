@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
@@ -11,17 +10,11 @@ import retweet from '../images/icons/tweet/retweet.svg'
 import share from '../images/icons/tweet/share.svg'
 
 export const Tweet = ({ data, content, avatar, index }) => {
-    const [date, setDate] = useState()
     const icons = [reply, retweet, like, share];
     const { user } = useAuth0()
 
-    useEffect(() => {
-        TimeAgo.addLocale(en)
-        const timeAgo = new TimeAgo('en-US')
-        if (data.published) {
-            setDate(timeAgo.format(new Date(data.published), 'twitter'))
-        }
-    }, [])
+    TimeAgo.addLocale(en)
+    const timeAgo = new TimeAgo('en-US')
 
     const handleIconClick = (index) => {
         if (index === 2 && user) {
@@ -45,7 +38,7 @@ export const Tweet = ({ data, content, avatar, index }) => {
                         </div>
                     )}
                     <p className={styles.source}>@{data.source ? data.source.toLowerCase().replace(/\s/g, "")  : 'Unknown'}</p>
-                    <p className={styles.date}>• {date ? date : 'Unknown'}</p>
+                    <p className={styles.date}>• {data.published ? timeAgo.format(new Date(data.published), 'twitter') : 'Unknown'}</p>
                     
                 </div>
                 <p className={styles.title}>{content}</p>

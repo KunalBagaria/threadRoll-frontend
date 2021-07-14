@@ -12,7 +12,7 @@ import like from '../images/icons/tweet/like.svg'
 import retweet from '../images/icons/tweet/retweet.svg'
 import share from '../images/icons/tweet/share.svg'
 
-export const TweetPreview = ({ data }) => {
+export const TweetPreview = ({ data, index }) => {
     const [date, setDate] = useState()
     const router = useRouter();
     const icons = [reply, retweet, like, share];
@@ -39,7 +39,7 @@ export const TweetPreview = ({ data }) => {
 
     return (
         <div className={styles.parent} onClick={() => router.push(`article?url=${data.url}`)}>
-            <img src={generator.generateRandomAvatar()} alt="Profile Picture" className={styles.profile}></img>
+            <img key={index} src={generator.generateRandomAvatar()} alt="Profile Picture" className={styles.profile}></img>
             <div className={styles.content}>
                 <div className={styles.publishing}>
                     <p className={styles.author}>{data.author ? data.author : 'Unknown'}</p>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { Meta } from '../components/Meta'
 import { Sidebar } from '../components/Sidebar'
 import { RightSidebar } from '../components/RightSidebar'
@@ -9,12 +8,11 @@ import Loading from '../components/Animations/Loading.json'
 import styles from '../styles/Home.module.scss'
 import { Tweet } from '../components/Tweet'
 
-const splitContent = (content, index) => {
+const splitContent = (content) => {
     console.log(content)
-    let contentArr = content.substring(280 * index, 280).split(' ')
+    let contentArr = content.substring(0, 280).split(' ')
     contentArr.pop()
     let string = contentArr.join(' ')
-    string += '...'
     return string
 }
 
@@ -32,9 +30,16 @@ export default function ArticlePage() {
         fetch(`https://ar-backend-production.up.railway.app/extract?url=${url}`)
         .then((res) => res.json())
         .then((json) => {
-            let asd = []
-            asd.push(splitContent(json.content))
-            setContent(asd)
+            let content = json.content
+            let contentArray = []
+            let string = ''
+
+            for (let i = 0; i < content.length; i = string.length) {
+                content = content.substring(i);
+                string += splitContent(content);
+                contentArray.push(string)
+            }
+            setContent(contentArray)
             setArticle(json)
             setLoading(false)
             localStorage.setItem('last', url)
@@ -62,11 +67,14 @@ export default function ArticlePage() {
                     {!article && !loading && (
                         <p>There was an error, please try with a valid link.</p>
                     )}
-                    {article && (
-                        content.map((string, index) => (
-                            <Tweet key={index} data={article} content={string} avatar={avatar} index={index} />
-                        ))
-                    )}
+                    
+                    <div className={styles.overFlowY}>
+                        {article && (
+                            content.map((string, index) => (
+                                <Tweet key={index} data={article} content={grammarify.clean(string)} avatar={avatar} index={index} />
+                            ))
+                        )}
+                    </div>
                 </div>
                 <RightSidebar />
             </div>
