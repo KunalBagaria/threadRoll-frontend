@@ -26,6 +26,8 @@ export const Tweet = ({ data, content, avatar, index }) => {
         }
     }
 
+    
+
     return (
         <div className={styles.parent}>
             <img src={avatar} alt="Profile Picture" className={styles.profile}></img>
@@ -39,7 +41,6 @@ export const Tweet = ({ data, content, avatar, index }) => {
                     )}
                     <p className={styles.source}>@{data.source ? data.source.toLowerCase().replace(/\s/g, "")  : 'Unknown'}</p>
                     <p className={styles.date}>• {data.published ? timeAgo.format(new Date(data.published), 'twitter') : 'Unknown'}</p>
-                    
                 </div>
                 <p className={styles.title}>{content}</p>
                 {index === 0 && (

@@ -21,36 +21,52 @@ export default function ArticlePage() {
     const [article, setArticle] = useState({})
     const [content, setContent] = useState([])
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
     const generator = new AvatarGenerator();
 
     useEffect(async () => {
         const url = window.location.search.split('=')[1] || localStorage.getItem('last')
-        const strings = []
+        if (url) {
+            fetch(`https://ar-backend-production.up.railway.app/extract?url=${url}`)
+            .then((res) => res.json())
+            .then((json) => {
 
-        fetch(`https://ar-backend-production.up.railway.app/extract?url=${url}`)
-        .then((res) => res.json())
-        .then((json) => {
-            let content = json.content
-            let contentArray = []
-            let string = ''
+                let content = json.content
+                let length = content.length
+                let contentArray = []
+                let string = ''
+                
+                // console.log('Before Removal:', content)
+                // console.log(string.length)
+                // console.log('After Removal:', content)
 
-            for (let i = 0; i < content.length; i = string.length) {
-                content = content.substring(i);
-                string += splitContent(content);
-                contentArray.push(string)
-            }
-            setContent(contentArray)
-            setArticle(json)
+                // while (string.length !== length) {
+                // }
+                for (let i=0; i < 10; i++) {
+                    string += splitContent(content);
+                    console.log(string)
+                    content = content.substring(string.length, 0)
+                    contentArray.push(content)
+                }
+
+                console.log(contentArray)
+
+                setContent(contentArray)
+                setArticle(json)
+                setLoading(false)
+                localStorage.setItem('last', url)
+            })
+        } else {
+            setError(true)
             setLoading(false)
-            localStorage.setItem('last', url)
-        })
+        }
     }, [])
 
     const avatar = generator.generateRandomAvatar()
 
     return (
         <>
-            <Meta title="Article / readRoll" description="Read articles, your way" />
+            <Meta title={"Article / readRoll"} arTitle={article.title} description={article.description ? article.description : 'Read articles, better.'} image={article.image} />
             <div className={styles.mainFlex}>
                 <Sidebar active="Article" />
                 <div className={styles.mainContent}>
@@ -64,14 +80,15 @@ export default function ArticlePage() {
                         </div>
                         </div>
                     )}
-                    {!article && !loading && (
-                        <p>There was an error, please try with a valid link.</p>
-                    )}
-                    
+
                     <div className={styles.overFlowY}>
+                        {error && (
+                            <p>There was an error, please try with a valid link.</p>
+                        )}
+
                         {article && (
                             content.map((string, index) => (
-                                <Tweet key={index} data={article} content={grammarify.clean(string)} avatar={avatar} index={index} />
+                                <Tweet key={index} data={article} content={string} avatar={avatar} index={index} />
                             ))
                         )}
                     </div>

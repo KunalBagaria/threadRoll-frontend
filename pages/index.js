@@ -23,12 +23,12 @@ export default function Home() {
   } = useAuth0()
 
   useEffect(() => {
-    fetchArticles(setArticles, setLoading)
+    fetchArticles(setArticles, setLoading, 'articles')
   }, [fetchArticles])
 
   return (
     <>
-      <Meta title="Home / readRoll" description="Read articles in a Twitter thread" />
+      <Meta title="Home / readRoll" description="Read articles, better." />
       <div className={styles.mainFlex}>
 
         <Sidebar active="Home" />
