@@ -14,7 +14,6 @@ export const Meta = ({ title, arTitle, description, image }) => (
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary" key="twcard" />
-            <meta name="twitter:creator" content={twitterHandle} key="twhandle" />
 
             {/* Open Graph */}
             <meta property="og:url" content={'https://readroll.app'} key="ogurl" />
