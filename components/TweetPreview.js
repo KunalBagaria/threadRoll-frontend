@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { AvatarGenerator } from 'random-avatar-generator';
 import Image from 'next/image'
@@ -13,29 +12,31 @@ import retweet from '../images/icons/tweet/retweet.svg'
 import share from '../images/icons/tweet/share.svg'
 
 export const TweetPreview = ({ data, index }) => {
-    const [date, setDate] = useState()
     const router = useRouter();
     const icons = [reply, retweet, like, share];
     const generator = new AvatarGenerator();
     const { user } = useAuth0()
 
-    useEffect(() => {
-        TimeAgo.addLocale(en)
-        const timeAgo = new TimeAgo('en-US')
-        if (data.published) {
-            setDate(timeAgo.format(new Date(data.published), 'twitter'))
-        }
-    }, [])
+    TimeAgo.addLocale(en)
+    const timeAgo = new TimeAgo('en-US')
 
-    const handleIconClick = (index) => {
+
+    const handleIconClick = (e, index) => {
+        e.stopPropagation()
         if (index === 2 && user) {
-            console.log(user)
+            console.log(user.email)
             // Save the article to the user's profile
         } else if (index === 3) {
             console.log('Share!')
             // Share popup
         }
     }
+
+    const isValidDate = (d) => {
+        return d instanceof Date && !isNaN(d);
+    }
+
+    const date = isValidDate(new Date(data.published)) ? timeAgo.format(new Date(data.published), 'twitter') : null
 
     return (
         <div className={styles.parent} onClick={() => router.push(`article?url=${data.url}`)}>
@@ -54,11 +55,14 @@ export const TweetPreview = ({ data, index }) => {
                 </div>
                 <p className={styles.title}>{data.title}</p>
                 <img src={data.image} alt="" className={styles.cover} />
+                {/* <div className={styles.sharePopup} key={index}>
+                    <p>Share</p>
+                </div> */}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : styles.iconParent}>
+                        <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : styles.shareIcon)}>
                             <div className={styles.icon}>
-                                <Image src={icon} onClick={() => handleIconClick(index)}></Image>
+                                <Image src={icon} onClick={(e) => handleIconClick(e, index)}></Image>
                             </div>
                         </div>
                     ))}

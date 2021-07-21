@@ -16,7 +16,8 @@ export const Tweet = ({ data, content, avatar, index }) => {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
-    const handleIconClick = (index) => {
+    const handleIconClick = (e, index) => {
+        e.stopPropagation()
         if (index === 2 && user) {
             console.log(user)
             // Save the article to the user's profile
@@ -26,7 +27,12 @@ export const Tweet = ({ data, content, avatar, index }) => {
         }
     }
 
-    
+    const isValidDate = (d) => {
+        return d instanceof Date && !isNaN(d);
+    }
+
+    const date = isValidDate(new Date(data.published)) ? timeAgo.format(new Date(data.published), 'twitter') : null
+
 
     return (
         <div className={styles.parent}>
@@ -40,17 +46,17 @@ export const Tweet = ({ data, content, avatar, index }) => {
                         </div>
                     )}
                     <p className={styles.source}>@{data.source ? data.source.toLowerCase().replace(/\s/g, "")  : 'Unknown'}</p>
-                    <p className={styles.date}>• {data.published ? timeAgo.format(new Date(data.published), 'twitter') : 'Unknown'}</p>
+                    <p className={styles.date}>• {date ? date : 'Unknown'}</p>
                 </div>
-                <p className={styles.title}>{content}</p>
+                <p className={styles.title} style={{ marginBottom: index === 0 ? '' : '0px'}}>{content}</p>
                 {index === 0 && (
                     <img src={data.image} alt="" className={styles.cover} />
                 )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : styles.iconParent}>
-                            <div className={styles.icon}>
-                                <Image src={icon} onClick={() => handleIconClick(index)}></Image>
+                        <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : styles.shareIcon)}>
+                        <div className={styles.icon}>
+                                <Image src={icon} onClick={(e) => handleIconClick(e, index)}></Image>
                             </div>
                         </div>
                     ))}

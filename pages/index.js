@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Animation } from '../components/Animation'
-import Loading from '../components/Animations/Loading.json'
 import { fetchArticles } from '../components/components'
 import { Meta } from '../components/Meta'
 import { Sidebar } from '../components/Sidebar'
 import { RightSidebar } from '../components/RightSidebar'
 import { useAuth0 } from '@auth0/auth0-react'
-import styles from '../styles/Home.module.scss'
 import { TweetPreview } from '../components/TweetPreview'
+import { MobileMenu } from '../components/MobileMenu'
+import Loading from '../components/Animations/Loading.json'
+import styles from '../styles/Home.module.scss'
 
 export default function Home() {
   const [articles, setArticles] = useState([])
@@ -36,6 +37,7 @@ export default function Home() {
         <div className={styles.mainContent}>
           <div className={styles.nav}>
             <h1 className={styles.pageName}>Home</h1>
+            <MobileMenu />
           </div>
 
           <div className={styles.overFlowY}>
