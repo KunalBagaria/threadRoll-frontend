@@ -3,22 +3,26 @@ import Head from 'next/head'
 export const Meta = ({ title, arTitle, description, image }) => (
     <>
         <Head>
-            <title>{title}</title>
-            <meta name="description" content={description} />
-            <meta name="title" content={arTitle ? arTitle : title} />
-            <meta name="description" content={description} />
 
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://readroll.app/" />
-            <meta property="og:title" content={arTitle ? arTitle : title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta charSet="utf-8" />
+            <meta name="description" content={description}></meta>
 
-            <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content="https://readroll.app/" />
-            <meta property="twitter:title" content={arTitle ? arTitle : title} />
-            <meta property="twitter:description" content={description} />
-            <meta property="twitter:image" content={image} />
+            <meta property="og:title" content={arTitle ? arTitle : title} key="ogtitle" />
+            <meta property="og:description" content={description} key="ogdesc" />
+            <title>{arTitle ? arTitle : title}</title>
+
+            {/* Twitter */}
+            <meta name="twitter:card" content="summary" key="twcard" />
+            <meta name="twitter:creator" content={twitterHandle} key="twhandle" />
+
+            {/* Open Graph */}
+            <meta property="og:url" content={'https://readroll.app'} key="ogurl" />
+            <meta property="og:image" content={image} key="ogimage" />
+            <meta property="og:site_name" content={'readRoll'} key="ogsitename" />
+            <meta property="og:title" content={arTitle ? arTitle : title} key="ogtitle" />
+            <meta property="og:description" content={description} key="ogdesc" />
+
             <link rel="icon" href="../favicon.ico" />
         </Head>
     </>
