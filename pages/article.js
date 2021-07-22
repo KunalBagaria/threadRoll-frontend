@@ -10,6 +10,8 @@ import Loading from '../components/Animations/Loading.json'
 import styles from '../styles/Home.module.scss'
 import { useRouter } from 'next/router'
 import { Tweet } from '../components/Tweet'
+import { MobileMenu } from '../components/MobileMenu'
+
 
 const chunkArray = (myArray, chunk_size) => {
     let index = 0;
@@ -18,6 +20,7 @@ const chunkArray = (myArray, chunk_size) => {
     for (index = 0; index < arrayLength; index += chunk_size) {
         let myChunk = myArray.slice(index, index + chunk_size);
         myChunk = myChunk.join(' ');
+        myChunk = myChunk.replace('&amp;', '&')
         tempArray.push(myChunk);
     }
     return tempArray;
@@ -39,7 +42,7 @@ export default function ArticlePage() {
             .then((json) => {
                 console.log(json)
                 let content = json.content.split(' ')
-                let stringArray = chunkArray(content, 50) 
+                let stringArray = chunkArray(content, 40) 
                 setContent(stringArray)
                 setArticle(json)
                 setLoading(false)
@@ -72,6 +75,7 @@ export default function ArticlePage() {
                             </div>
                         </div>
                         <h1 className={styles.pageName}>Article</h1>
+                        <MobileMenu />
                     </div>
 
                     {loading && (

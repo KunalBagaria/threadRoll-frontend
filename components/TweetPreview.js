@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { useState } from 'react';
 import { AvatarGenerator } from 'random-avatar-generator';
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
@@ -15,7 +16,8 @@ export const TweetPreview = ({ data, index }) => {
     const router = useRouter();
     const icons = [reply, retweet, like, share];
     const generator = new AvatarGenerator();
-    const { user } = useAuth0()
+    const [sharePopup, setShare] = useState(null);
+    const { user, loginWithRedirect } = useAuth0()
 
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
@@ -25,15 +27,17 @@ export const TweetPreview = ({ data, index }) => {
         router.push(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fthreadroll.app/article?url=${data.url}&via=rollthread&text=${data.title}`)
     }
 
-    const handleIconClick = (e, index) => {
+    const handleIconClick = (e, i) => {
         e.stopPropagation()
-        if (index === 2 && user) {
-            console.log(user.email)
+        if (i === 2 && user) {
+            console.log(user.sub.split('|').pop())
             // Save the article to the user's profile
-        } else if (index === 3) {
+        } else if (i === 2 && !user) {
+            loginWithRedirect()
+        } else if (i === 3) {
             console.log('Share!')
-            // Share popup
-        } else if (index === 1) {
+            setShare(index)
+        } else if (i === 1) {
             handleRetweetClick(e)
         }
     }
@@ -61,9 +65,11 @@ export const TweetPreview = ({ data, index }) => {
                 </div>
                 <p className={styles.title}>{data.title}</p>
                 <img src={data.image} alt="" className={styles.cover} />
-                {/* <div className={styles.sharePopup} key={index}>
-                    <p>Share</p>
-                </div> */}
+                {sharePopup === index && (
+                    <div className={styles.sharePopup} key={index}>
+                        <p>Share</p>
+                    </div>
+                )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
                         <div key={index} className={(index === 0) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>

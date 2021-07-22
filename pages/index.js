@@ -8,8 +8,10 @@ import { RightSidebar } from '../components/RightSidebar'
 import { useAuth0 } from '@auth0/auth0-react'
 import { TweetPreview } from '../components/TweetPreview'
 import { MobileMenu } from '../components/MobileMenu'
+import back from '../images/icons/back.svg'
 import Loading from '../components/Animations/Loading.json'
 import styles from '../styles/Home.module.scss'
+import Image from 'next/image'
 
 export default function Home() {
   const [articles, setArticles] = useState([])
@@ -36,6 +38,11 @@ export default function Home() {
 
         <div className={styles.mainContent}>
           <div className={styles.nav}>
+            <div className={styles.back} onClick={() => router.back()}>
+              <div>
+                <Image src={back}></Image>
+              </div>
+            </div>
             <h1 className={styles.pageName}>Home</h1>
             <MobileMenu />
           </div>
