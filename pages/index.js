@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <>
-      <Meta title="Home / readRoll" description="Read articles, better." />
+      <Meta title="Home / threadRoll" description="Roll articles into a twitter thread" />
       <div className={styles.mainFlex}>
 
         <Sidebar active="Home" />

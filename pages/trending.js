@@ -19,7 +19,7 @@ export default function Article() {
 
   return (
     <>
-        <Meta title="Trending / readRoll" description="Read articles, your way" />
+        <Meta title="Trending / readRoll" description="Roll articles into a twitter thread" />
         <div className={styles.mainFlex}>
           <Sidebar active="Trending" />
           <div className={styles.mainContent}>
