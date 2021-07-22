@@ -39,7 +39,7 @@ export default function ArticlePage() {
             .then((json) => {
                 console.log(json)
                 let content = json.content.split(' ')
-                let stringArray = chunkArray(content, 60) 
+                let stringArray = chunkArray(content, 50) 
                 setContent(stringArray)
                 setArticle(json)
                 setLoading(false)

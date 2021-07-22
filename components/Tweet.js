@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { useRouter } from 'next/router';
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
 import styles from '../styles/TweetPreview.module.scss'
@@ -12,11 +13,17 @@ import share from '../images/icons/tweet/share.svg'
 export const Tweet = ({ data, content, avatar, index }) => {
     const icons = [reply, retweet, like, share];
     const { user } = useAuth0()
+    const router = useRouter()
 
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
-    const handleIconClick = (e, index) => {
+    const handleRetweetClick = (e, text) => {
+        e.preventDefault()
+        router.push(`https://twitter.com/intent/tweet?text=${text}`)
+    }
+
+    const handleIconClick = (e, index, text) => {
         e.stopPropagation()
         if (index === 2 && user) {
             console.log(user)
@@ -24,6 +31,8 @@ export const Tweet = ({ data, content, avatar, index }) => {
         } else if (index === 3) {
             console.log('Share!')
             // Share popup
+        } else if (index === 1) {
+            handleRetweetClick(e, text)
         }
     }
 
@@ -33,6 +42,7 @@ export const Tweet = ({ data, content, avatar, index }) => {
 
     const date = isValidDate(new Date(data.published)) ? timeAgo.format(new Date(data.published), 'twitter') : null
 
+    
 
     return (
         <div className={styles.parent}>
@@ -54,9 +64,9 @@ export const Tweet = ({ data, content, avatar, index }) => {
                 )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : styles.shareIcon)}>
-                        <div className={styles.icon}>
-                                <Image src={icon} onClick={(e) => handleIconClick(e, index)}></Image>
+                        <div key={index} className={(index === 0) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
+                            <div className={styles.icon}>
+                                <Image src={icon} onClick={(e) => handleIconClick(e, index, (index === 1 ? content : ''))}></Image>
                             </div>
                         </div>
                     ))}

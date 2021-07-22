@@ -20,6 +20,10 @@ export const TweetPreview = ({ data, index }) => {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
+    const handleRetweetClick = (e) => {
+        e.preventDefault()
+        router.push(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fthreadroll.app/article?url=${data.url}&via=rollthread&text=${data.title}`)
+    }
 
     const handleIconClick = (e, index) => {
         e.stopPropagation()
@@ -29,6 +33,8 @@ export const TweetPreview = ({ data, index }) => {
         } else if (index === 3) {
             console.log('Share!')
             // Share popup
+        } else if (index === 1) {
+            handleRetweetClick(e)
         }
     }
 
@@ -60,7 +66,7 @@ export const TweetPreview = ({ data, index }) => {
                 </div> */}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0 || index === 1) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : styles.shareIcon)}>
+                        <div key={index} className={(index === 0) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
                             <div className={styles.icon}>
                                 <Image src={icon} onClick={(e) => handleIconClick(e, index)}></Image>
                             </div>
