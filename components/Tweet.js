@@ -64,7 +64,7 @@ export const Tweet = ({ data, content, avatar, index }) => {
                 )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
+                        <div key={index} className={(index === 0 || index === 2 || index === 3) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
                             <div className={styles.icon}>
                                 <Image src={icon} onClick={(e) => handleIconClick(e, index, (index === 1 ? content : ''))}></Image>
                             </div>

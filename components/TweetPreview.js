@@ -11,10 +11,11 @@ import reply from '../images/icons/tweet/reply.svg'
 import like from '../images/icons/tweet/like.svg'
 import retweet from '../images/icons/tweet/retweet.svg'
 import share from '../images/icons/tweet/share.svg'
+import liked from '../images/icons/tweet/liked.svg'
 
-export const TweetPreview = ({ data, index }) => {
+export const TweetPreview = ({ data, index, saved }) => {
     const router = useRouter();
-    const icons = [reply, retweet, like, share];
+    let icons = [reply, retweet, (saved ? (saved.includes(data.url) ? liked : like) : like), share];
     const generator = new AvatarGenerator();
     const [sharePopup, setShare] = useState(null);
     const { user, loginWithRedirect } = useAuth0()
@@ -29,14 +30,17 @@ export const TweetPreview = ({ data, index }) => {
 
     const handleIconClick = (e, i) => {
         e.stopPropagation()
-        if (i === 2 && user) {
-            console.log(user.sub.split('|').pop())
+        if (i === 2 && user?.sub && saved && !saved.includes(data.url)) {
+            const userId = user.sub.split('|').pop()
+            icons = [reply, retweet, liked, share]
+            fetch(`https://ar-backend-production.up.railway.app/save?user=${userId}&_id=${data._id}`)
+                .catch((err) => console.error(err))
             // Save the article to the user's profile
-        } else if (i === 2 && !user) {
+        } else if (i === 2 && !user?.sub) {
             loginWithRedirect()
         } else if (i === 3) {
             console.log('Share!')
-            setShare(index)
+            // setShare(index)
         } else if (i === 1) {
             handleRetweetClick(e)
         }
@@ -72,9 +76,9 @@ export const TweetPreview = ({ data, index }) => {
                 )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
+                        <div onClick={(e) => handleIconClick(e, index)} key={index} className={(index === 0 || index === 3 || (index === 2 && saved && saved.includes(data.url))) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
                             <div className={styles.icon}>
-                                <Image src={icon} onClick={(e) => handleIconClick(e, index)}></Image>
+                                <Image src={icon}></Image>
                             </div>
                         </div>
                     ))}

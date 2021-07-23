@@ -63,7 +63,7 @@ export default function ArticlePage() {
 
     return (
         <>
-            <Meta title={"Article / readRoll"} arTitle={article.title} description={article.description ? article.description : 'Roll articles into a twitter thread'} image={article.image} />
+            <Meta title={"Article / threadRoll"} arTitle={article.title} description={article.description ? article.description : 'Roll articles into a twitter thread'} image={article.image} />
             <div className={styles.mainFlex}>
                 <Sidebar active="Article" />
                 <div className={styles.mainContent}>

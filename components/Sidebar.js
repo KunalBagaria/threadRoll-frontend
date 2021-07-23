@@ -20,7 +20,7 @@ export const Sidebar = ({ active }) => {
         <div className={styles.parent}>
             <Link href="/">
                 <div className={homeCss.logo}>
-                    <Image src={logo} alt="readRoll Logo" />
+                    <Image src={logo} alt="threadRoll Logo" />
                 </div>
             </Link>
             {sidebarLinks.map((link, index) => (

@@ -6,6 +6,7 @@ export const Meta = ({ title, arTitle, description, image }) => (
             <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
             <meta charSet="utf-8"></meta>
             <meta name="description" content={description}></meta>
+            <title>{arTitle ? arTitle : title}</title>
 
             <link rel="apple-touch-icon" href="https://i.imgur.com/O6DPyTR.png"></link>
 

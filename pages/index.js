@@ -8,6 +8,7 @@ import { RightSidebar } from '../components/RightSidebar'
 import { useAuth0 } from '@auth0/auth0-react'
 import { TweetPreview } from '../components/TweetPreview'
 import { MobileMenu } from '../components/MobileMenu'
+import { userArticles } from '../components/userArticles'
 import back from '../images/icons/back.svg'
 import Loading from '../components/Animations/Loading.json'
 import styles from '../styles/Home.module.scss'
@@ -18,6 +19,7 @@ export default function Home() {
   const [link, setLink] = useState()
   const [red, setRed] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [savedArticles, setSavedArticles] = useState([])
   const router = useRouter()
 
   const {
@@ -25,9 +27,22 @@ export default function Home() {
     isLoading
   } = useAuth0()
 
-  useEffect(() => {
+  useEffect(async () => {
     fetchArticles(setArticles, setLoading, 'articles')
   }, [fetchArticles])
+
+  const saveSaved = async () => {
+    if (user?.sub) {
+      const uid = user.sub.split('|').pop()
+      let userarts = await userArticles(uid)
+      userarts = userarts.map((item) => item.url)
+      setSavedArticles(userarts)
+    }
+  }
+
+  if (!isLoading) {
+    saveSaved()
+  }
 
   return (
     <>
@@ -99,7 +114,7 @@ export default function Home() {
               )}
               {!loading && articles[0] && (
                 articles.map((article, index) => (
-                  <TweetPreview data={article} key={index} index={index} />
+                  <TweetPreview data={article} key={index} index={index} saved={savedArticles} />
                 ))
               )}
             </div>
