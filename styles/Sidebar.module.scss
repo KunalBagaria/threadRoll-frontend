@@ -22,7 +22,7 @@
 .button {
     display: flex;
     align-items: center;
-    width: calc(70px + 7vw);
+    width: calc(90px + 7vw);
     height: calc(20px + 1.8vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;
@@ -39,7 +39,7 @@
 
 .linkName {
     font-weight: 600;
-    font-size: calc(8px + 0.5vw);
+    font-size: calc(11px + 0.5vw);
     margin-left: calc(5px + 0.7vw);
     & {
         @media only screen and (max-width: 600px) {
@@ -52,7 +52,7 @@
     margin-left: calc(7px + 0.7vw);
     display: flex;
     align-items: center;
-    width: calc(15px + 1vw);
+    width: calc(12px + 1vw);
     & {
         @media only screen and (max-width: 600px) {
             margin-left: calc(4px + 0.4vw);
@@ -69,7 +69,7 @@
     font-weight: 600;
     align-items: center;
     justify-content: center;
-    width: calc(70px + 7vw);
+    width: calc(90px + 7vw);
     height: calc(20px + 1.8vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;
