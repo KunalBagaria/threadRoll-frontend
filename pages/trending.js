@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { fetchArticles } from '../components/components'
+import { userArticles } from '../components/userArticles'
 import { useRouter } from 'next/router'
+import { useAuth0 } from '@auth0/auth0-react'
 import back from '../images/icons/back.svg'
 import { TweetPreview } from '../components/TweetPreview'
 import { Meta } from '../components/Meta'
@@ -15,11 +17,19 @@ import Image from 'next/image'
 export default function Article() {
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
+  const [savedArticles, setSavedArticles] = useState([])
+  const { user } = useAuth0()
   const router = useRouter()
 
-  useEffect(() => {
+  useEffect(async () => {
     fetchArticles(setArticles, setLoading, 'trending')
-  }, [fetchArticles])
+    if (user?.sub) {
+      const uid = user.sub.split('|').pop()
+      let userarts = await userArticles(uid)
+      userarts = userarts.map((item) => item.url)
+      setSavedArticles(userarts)
+    }
+  }, [fetchArticles, user])
 
 
   return (
@@ -50,7 +60,7 @@ export default function Article() {
               <div className={styles.tweetsFlex}>
                 {!loading && articles[0] && (
                   articles.map((article, index) => (
-                    <TweetPreview data={article} key={index} index={index} />
+                    <TweetPreview data={article} key={index} index={index} saved={savedArticles} />
                   ))
                 )}
               </div>

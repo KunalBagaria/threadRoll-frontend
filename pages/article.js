@@ -29,6 +29,7 @@ const chunkArray = (myArray, chunk_size) => {
 export default function ArticlePage() {
     const [article, setArticle] = useState({})
     const [content, setContent] = useState([])
+    const [saved, setSaved] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const router = useRouter()
@@ -93,7 +94,7 @@ export default function ArticlePage() {
 
                         {article && (
                             content.map((string, index) => (
-                                <Tweet key={index} data={article} content={string} avatar={avatar} index={index} />
+                                <Tweet key={index} data={article} content={string} avatar={avatar} index={index} saved={saved} setSaved={setSaved} />
                             ))
                         )}
                     </div>

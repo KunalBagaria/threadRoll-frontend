@@ -29,20 +29,13 @@ export default function Home() {
 
   useEffect(async () => {
     fetchArticles(setArticles, setLoading, 'articles')
-  }, [fetchArticles])
-
-  const saveSaved = async () => {
     if (user?.sub) {
       const uid = user.sub.split('|').pop()
       let userarts = await userArticles(uid)
       userarts = userarts.map((item) => item.url)
       setSavedArticles(userarts)
     }
-  }
-
-  if (!isLoading) {
-    saveSaved()
-  }
+  }, [fetchArticles, user])
 
   return (
     <>

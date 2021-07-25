@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
@@ -11,8 +10,8 @@ import retweet from '../images/icons/tweet/retweet.svg'
 import share from '../images/icons/tweet/share.svg'
 
 export const Tweet = ({ data, content, avatar, index }) => {
+
     const icons = [reply, retweet, like, share];
-    const { user } = useAuth0()
     const router = useRouter()
 
     TimeAgo.addLocale(en)
@@ -25,9 +24,8 @@ export const Tweet = ({ data, content, avatar, index }) => {
 
     const handleIconClick = (e, index, text) => {
         e.stopPropagation()
-        if (index === 2 && user) {
-            console.log(user)
-            // Save the article to the user's profile
+        if (index === 2) {
+            return
         } else if (index === 3) {
             console.log('Share!')
             // Share popup
@@ -42,7 +40,20 @@ export const Tweet = ({ data, content, avatar, index }) => {
 
     const date = isValidDate(new Date(data.published)) ? timeAgo.format(new Date(data.published), 'twitter') : null
 
-    
+    const classNames = [
+        {
+            class: styles.iconParentNoHover
+        },
+        {
+            class: styles.reIcon
+        },
+        {
+            class: styles.iconParentNoHover
+        },
+        {
+            class: styles.shareIcon
+        }
+    ]
 
     return (
         <div className={styles.parent}>
@@ -64,9 +75,9 @@ export const Tweet = ({ data, content, avatar, index }) => {
                 )}
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
-                        <div key={index} className={(index === 0 || index === 2 || index === 3) ? styles.iconParentNoHover : (index === 2 ? styles.likeIcon : (index === 1 ? styles.reIcon : styles.shareIcon))}>
+                        <div key={index} onClick={(e) => handleIconClick(e, index, (index === 1 ? content : ''))} className={classNames[index]['class']}>
                             <div className={styles.icon}>
-                                <Image src={icon} onClick={(e) => handleIconClick(e, index, (index === 1 ? content : ''))}></Image>
+                                <Image src={icon}></Image>
                             </div>
                         </div>
                     ))}
