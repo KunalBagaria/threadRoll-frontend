@@ -8,12 +8,12 @@
     cursor: pointer;
     transition: .3s all;
     &:hover {
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.02);
     }
 }
 
 .cover {
-    max-width: 90%;
+    max-width: 95%;
     border-radius: calc(10px + 0.5vw);
     border: 12px;
 }
@@ -157,7 +157,11 @@
 
 .sharePopup {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     width: 100px;
-    background: black;
+    background: inherit;
     z-index: 99;
+    box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
 }

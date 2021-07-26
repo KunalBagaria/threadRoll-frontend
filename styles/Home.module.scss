@@ -1,6 +1,7 @@
 .logo {
   margin-top: calc(14px + 0.7vw);
-  padding-right: calc(5px + 0.5vw);
+  margin-right: calc(7px + 0.7vw);
+  // padding-right: calc(5px + 0.5vw);
   width: calc(80px + 4vw);
   cursor: pointer;
 }
@@ -16,7 +17,7 @@
 .mainContent {
   border-left: 0.1vw solid rgb(255, 255, 255, 0.2);
   border-right: 0.1vw solid rgb(255, 255, 255, 0.2);
-  width: 45%;
+  width: 43.5%;
   & {
     @media only screen and (max-width: 1200px) {
         width: 70%;
@@ -57,7 +58,10 @@
 }
 
 .parseParent {
-  height: calc(100px + 4vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .loading {
@@ -76,7 +80,8 @@
 
 .divider {
   height: calc(5px + 0.5vw);
-  background: rgb(21, 24, 28);
+  background: rgba(98, 135, 255, 0.035);
+  margin-top: 5%;
   border-bottom: 0.1vw solid rgb(255, 255, 255, 0.2);
   border-top: 0.1vw solid rgb(255, 255, 255, 0.2);
   width: 100%;
@@ -85,10 +90,10 @@
 .parseChild {
   display: flex;
   align-items: flex-start;
-  width: 95%;
-  height: 95%;
-  margin-left: 3%;
-  margin-top: 5%;
+  justify-content: space-between;
+  width: 93%;
+  margin-top: 1.5%;
+  // height: 95%;
 }
 
 .parseStuff {
@@ -99,21 +104,20 @@
   background: transparent;
   outline: none;
   border: none;
-  caret-color: #6d767e;
-  color: #6d767e;
+  caret-color: #a0bbcf;
+  color: white;
   width: 100%;
   font-size: calc(12px + 0.5vw);
-  margin-left: calc(10px + 0.3vw);
   margin-top: calc(8px + 0.3vw);
   &::placeholder {
-    color: white;
+    color: #a0bbcf;
   }
 }
 
 .smallDivider {
-  margin-left: calc(10px + 0.3vw);
-  margin-top: calc(20px + 1vw);
-  width: 90%;
+  margin-top: calc(15px + 1vw);
+  margin-bottom: calc(7px + 0.7vw);
+  width: 95%;
   height: 1px;
   background: rgb(109,118,126, 0.5);
 }
@@ -125,7 +129,7 @@
   font-weight: 600;
   cursor: pointer;
   margin-left: 80%;
-  margin-top: calc(10px + 0.4vw);
+  // margin-top: calc(10px + 0.4vw);
   color: white;
   width: calc(35px + 4vw);
   height: calc(15px + 1.5vw);

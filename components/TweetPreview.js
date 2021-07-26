@@ -1,6 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
-import { AvatarGenerator } from 'random-avatar-generator';
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
 import styles from '../styles/TweetPreview.module.scss'
@@ -17,7 +16,6 @@ import ClickAwayListener from 'react-click-away-listener';
 export const TweetPreview = ({ data, index, saved }) => {
     const router = useRouter();
     const [like, setLike] = useState(saved.includes(data.url) ? liked : likeIcon);
-    const generator = new AvatarGenerator();
     const [sharePopup, setShare] = useState(null);
     const { user, loginWithRedirect } = useAuth0()
 
@@ -38,6 +36,7 @@ export const TweetPreview = ({ data, index, saved }) => {
             }
         }
     }, [saved])
+
 
     const handleIconClick = (e, i) => {
         e.stopPropagation()
@@ -78,13 +77,15 @@ export const TweetPreview = ({ data, index, saved }) => {
 
     const handleShareClick = (e) => {
         e.stopPropagation()
+        navigator.clipboard.writeText(data.url)
+        setShare(false);
     }
 
     const date = isValidDate(new Date(data.published)) ? timeAgo.format(new Date(data.published), 'twitter') : null
 
     return (
         <div className={styles.parent} onClick={() => router.push(`article?url=${data.url}`)}>
-            <img key={index} src={generator.generateRandomAvatar()} alt="Profile Picture" className={styles.profile}></img>
+            <img key={index} src={`https://i.pravatar.cc/150?u=${data._id}`} alt="Profile Picture" className={styles.profile}></img>
             <div className={styles.content}>
                 <div className={styles.publishing}>
                     <p className={styles.author}>{data.author ? data.author : 'Unknown'}</p>

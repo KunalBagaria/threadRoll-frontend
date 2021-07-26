@@ -1,7 +1,7 @@
 .parent {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 23.5%;
     height: 100vh;
     align-items: center;
     padding-right: calc(10px + 1vw);
@@ -22,11 +22,12 @@
 .button {
     display: flex;
     align-items: center;
-    width: calc(90px + 7vw);
+    width: calc(70px + 9vw);
     height: calc(20px + 1.8vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;
     border-radius: calc(15px + 1vw);
+    transition: .15s all;
     &:hover {
         background: rgb(29, 161, 242, 0.16);
     }
@@ -69,7 +70,7 @@
     font-weight: 600;
     align-items: center;
     justify-content: center;
-    width: calc(90px + 7vw);
+    width: calc(70px + 9vw);
     height: calc(20px + 1.8vw);
     margin-top: calc(20px + 1vw);
     cursor: pointer;

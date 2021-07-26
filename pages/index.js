@@ -46,11 +46,6 @@ export default function Home() {
 
         <div className={styles.mainContent}>
           <div className={styles.nav}>
-            <div className={styles.back} onClick={() => router.back()}>
-              <div>
-                <Image src={back}></Image>
-              </div>
-            </div>
             <h1 className={styles.pageName}>Home</h1>
             <MobileMenu />
           </div>
@@ -71,7 +66,7 @@ export default function Home() {
                 <div className={styles.parseChild}>
                   <img className={styles.profilePicture} src={user?.picture ? user.picture : 'https://i.imgur.com/9AMrjnG.jpg'} alt="Profile Picture" />
                   <div className={styles.parseStuff}>
-                    <input style={{ color: link ? 'white' : ''}} onChange={(e) => {
+                    <input style={{ color: link ? 'white' : 'inherit'}} onChange={(e) => {
                       const regex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
                       const input = e.target.value;
                       if (regex.test(input)) {
