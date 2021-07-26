@@ -5,7 +5,6 @@ import { Meta } from '../components/Meta'
 import { Sidebar } from '../components/Sidebar'
 import { RightSidebar } from '../components/RightSidebar'
 import { Animation } from '../components/Animation'
-import { AvatarGenerator } from 'random-avatar-generator';
 import Loading from '../components/Animations/Loading.json'
 import styles from '../styles/Home.module.scss'
 import { useRouter } from 'next/router'
@@ -33,7 +32,6 @@ export default function ArticlePage() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const router = useRouter()
-    const generator = new AvatarGenerator();
 
     useEffect(async () => {
         const url = window.location.search.split('=')[1] || localStorage.getItem('last')
@@ -59,8 +57,6 @@ export default function ArticlePage() {
             setLoading(false)
         }
     }, [])
-
-    const avatar = generator.generateRandomAvatar()
 
     return (
         <>
@@ -94,7 +90,7 @@ export default function ArticlePage() {
 
                         {article && (
                             content.map((string, index) => (
-                                <Tweet key={index} data={article} content={string} avatar={avatar} index={index} saved={saved} setSaved={setSaved} />
+                                <Tweet key={index} data={article} content={string} avatar={`https://i.pravatar.cc/150?u=${article.url}`} index={index} saved={saved} setSaved={setSaved} />
                             ))
                         )}
                     </div>

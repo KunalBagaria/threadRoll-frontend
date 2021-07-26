@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from 'next/router'
 import styles from '../styles/Components.module.scss'
 import Image from 'next/image'
 import menu from '../images/icons/menu.svg'
 import Modal from 'react-modal';
 
-const customStyles = {
+let customStyles = {
     content: {
         display: 'flex',
         flexDirection: 'column',
@@ -16,7 +16,6 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        background: 'black',
         width: '200px',
         borderRadius: 'calc(10px + 1vw)',
         border: 'none',
@@ -51,6 +50,11 @@ Modal.setAppElement('#__next');
 export const MobileMenu = () => {
     const [modal, setModal] = useState(false)
     const router = useRouter()
+
+    useEffect(() => {
+        customStyles['content']['background'] = localStorage?.getItem('theme') || '#15202b'
+    }, [])
+
     return (
         <>
             <div className={styles.menu} onClick={() => modal ? setModal(false) : setModal(true)}>

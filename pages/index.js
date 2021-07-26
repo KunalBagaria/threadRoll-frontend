@@ -55,7 +55,7 @@ export default function Home() {
             <div className={styles.parseParent}>
               {isLoading && (
                 <div className={styles.loading}>
-                  <div style={{ width: 'calc(40px + 1vw)', height: 'calc(40px + 1vw)' }}>
+                  <div style={{ width: 'calc(40px + 1vw)', height: 'calc(40px + 1vw)', marginTop: '5%' }}>
                     <Animation json={Loading} />
                   </div>
                 </div>

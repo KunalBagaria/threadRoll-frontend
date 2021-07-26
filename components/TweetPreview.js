@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
+import link from '../images/icons/tweet/link.svg'
 import Image from 'next/image'
 import verified from '../images/icons/verified.svg'
 import styles from '../styles/TweetPreview.module.scss'
@@ -49,7 +50,6 @@ export const TweetPreview = ({ data, index, saved }) => {
         } else if (i === 2 && !user?.sub) {
             loginWithRedirect()
         } else if (i === 3) {
-            setShare(false)
             setShare(true)
         } else if (i === 1) {
             handleRetweetClick(e)
@@ -77,7 +77,7 @@ export const TweetPreview = ({ data, index, saved }) => {
 
     const handleShareClick = (e) => {
         e.stopPropagation()
-        navigator.clipboard.writeText(data.url)
+        navigator.clipboard.writeText(`https://threadroll.app/article?url=${data.url}`)
         setShare(false);
     }
 
@@ -101,14 +101,6 @@ export const TweetPreview = ({ data, index, saved }) => {
                 <p className={styles.title}>{data.title}</p>
                 <img src={data.image} alt="" className={styles.cover} />
 
-                {sharePopup && (
-                    <ClickAwayListener onClickAway={() => setShare(false)}>
-                        <div className={styles.sharePopup} key={index} onClick={(e) => handleShareClick(e)}>
-                            <p>Copy link</p>
-                        </div>
-                    </ClickAwayListener>
-                )}
-
                 <div className={styles.buttons}>
                     {icons.map((icon, index) => (
                         <div onClick={(e) => handleIconClick(e, index)} key={index} className={classNames[index]['class']}>
@@ -117,6 +109,18 @@ export const TweetPreview = ({ data, index, saved }) => {
                             </div>
                         </div>
                     ))}
+                    {sharePopup && (
+                        <div className={styles.sharePopup} key={index} onClick={(e) => handleShareClick(e)} style={{ background: localStorage.getItem('theme') || '#15202b'}}>
+                            <ClickAwayListener onClickAway={() => setShare(false)}>
+                            <div className={styles.sharePopupChild}>
+                                <div style={{ marginLeft: 'calc(7px + 0.7vw)', width: 'calc(10px + 1vw)' }}>
+                                    <Image src={link} alt="Link Icon" />
+                                </div>
+                                <p>Copy link</p>
+                            </div>
+                            </ClickAwayListener>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

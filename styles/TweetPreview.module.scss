@@ -2,7 +2,6 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    overflow: hidden;
     width: 100%;
     border-bottom: 0.1vw solid rgb(255, 255, 255, 0.2);
     cursor: pointer;
@@ -80,13 +79,14 @@
 .buttons {
     display: flex;
     width: 85%;
+    position: relative;
     justify-content: space-between;
     margin-bottom: calc(5px + 0.5vw);
 }
 
 .icon {
-    width: calc(7px + 0.7vw);
-    height: calc(7px + 0.7vw);
+    width: calc(10px + 0.5vw);
+    height: calc(10px + 0.5vw);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,8 +100,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: calc(13px + 1vw);
-    height: calc(13px + 1vw);
+    width: calc(18px + 0.7vw);
+    height: calc(18px + 0.7vw);
     transition: .3s all;
     position: relative;
     &:hover {
@@ -116,8 +116,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: calc(13px + 1vw);
-    height: calc(13px + 1vw);
+    width: calc(18px + 0.7vw);
+    height: calc(18px + 0.7vw);
     transition: .3s all;
     position: relative;
     &:hover {
@@ -132,8 +132,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: calc(13px + 1vw);
-    height: calc(13px + 1vw);
+    width: calc(18px + 0.7vw);
+    height: calc(18px + 0.7vw);
     transition: .3s all;
     position: relative;
     &:hover {
@@ -148,20 +148,32 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: calc(13px + 1vw);
-    height: calc(13px + 1vw);
+    width: calc(18px + 0.7vw);
+    height: calc(18px + 0.7vw);
     transition: .3s all;
     position: relative;
     cursor: default;
 }
 
 .sharePopup {
-    position: relative;
+    position: absolute;
+    width: 40%;
+    margin-left: 70%;
+    margin-top: 3%;
+    box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
+
+}
+
+.sharePopupChild {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 100px;
-    background: inherit;
-    z-index: 99;
-    box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
+    justify-content: flex-start;
+    transition: .3s all;
+    &:hover {
+        background: rgb(255, 255, 255, 0.05);
+    }
+    & > * {
+        margin-left: calc(7px + 0.7vw);
+        font-size: calc(10px + 0.4vw);
+    }
 }
