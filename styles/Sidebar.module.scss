@@ -1,6 +1,7 @@
 .parent {
     display: flex;
     flex-direction: column;
+    position: relative;
     width: 23.5%;
     height: 100vh;
     align-items: center;
@@ -24,17 +25,23 @@
     align-items: center;
     width: calc(70px + 9vw);
     height: calc(20px + 1.8vw);
-    margin-top: calc(20px + 1vw);
+    margin-top: calc(15px + 1vw);
     cursor: pointer;
     border-radius: calc(15px + 1vw);
-    transition: .15s all;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s;
     &:hover {
-        background: rgb(29, 161, 242, 0.16);
+        background: rgb(29, 161, 242, 0.12);
     }
     & {
         @media only screen and (max-width: 600px) {
             width: calc(50px + 5vw);
         }
+    }
+}
+
+.button:hover {
+    & > p {
+        color: rgb(29, 161, 242);
     }
 }
 
@@ -85,5 +92,28 @@
         @media only screen and (max-width: 600px) {
             width: calc(50px + 5vw);
         }
+    }
+}
+
+
+.popup {
+    position: absolute;
+    width: 60%;
+    cursor: pointer;
+    margin-top: 120%;
+    box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
+}
+
+.popupChild {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: .3s all;
+    &:hover {
+        background: rgb(255, 255, 255, 0.05);
+    }
+    & > * {
+        margin-left: calc(7px + 0.7vw);
+        font-size: calc(10px + 0.4vw);
     }
 }

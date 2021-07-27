@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useRouter } from 'next/router'
+import { switchTheme } from '../components/components'
 import styles from '../styles/Components.module.scss'
 import Image from 'next/image'
 import menu from '../images/icons/menu.svg'
@@ -41,6 +42,10 @@ const links = [
     {
         name: 'Trending',
         link: '/trending',
+    },
+    {
+        name: 'Switch Theme',
+        link: ''
     }
 ]
 
@@ -55,6 +60,12 @@ export const MobileMenu = () => {
         customStyles['content']['background'] = localStorage?.getItem('theme') || '#15202b'
     }, [])
 
+    const handleThemeChange = () => {
+        switchTheme(localStorage)
+        setModal(false)
+        router.reload(window.location.pathname)
+    }
+
     return (
         <>
             <div className={styles.menu} onClick={() => modal ? setModal(false) : setModal(true)}>
@@ -67,7 +78,7 @@ export const MobileMenu = () => {
                 <Modal isOpen={modal} style={customStyles}>
                     <div onClick={(e) => e.stopPropagation()}>
                         {links.map((link, i) => (
-                            <div key={i} className={styles.linkDiv} onClick={() => router.push(link.link)}>
+                            <div key={i} className={styles.linkDiv} onClick={() => i !== 4 ? router.push(link.link) : handleThemeChange()} >
                                 <p>{link.name}</p>
                             </div>
                         ))}
