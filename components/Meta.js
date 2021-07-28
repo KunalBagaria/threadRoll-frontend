@@ -8,7 +8,7 @@ export const Meta = ({ title, arTitle, description, image }) => (
             <meta name="description" content={description}></meta>
             <title>{arTitle ? arTitle : title}</title>
 
-            <link rel="apple-touch-icon" href="https://i.imgur.com/O6DPyTR.png"></link>
+            <link rel="apple-touch-icon" href="https://i.imgur.com/a5xbsi0.png"></link>
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary" key="twcard" />
@@ -16,12 +16,12 @@ export const Meta = ({ title, arTitle, description, image }) => (
             <meta property="twitter:url" content="https://threadroll.app/" />
             <meta property="twitter:title" content={arTitle ? arTitle : title} />
             <meta property="twitter:description" content={description} />
-            <meta property="twitter:image" content="https://i.imgur.com/O6DPyTR.png" />
+            <meta property="twitter:image" content="https://i.imgur.com/a5xbsi0.png" />
 
             {/* Open Graph */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content={'https://threadroll.app'} key="ogurl" />
-            <meta property="og:image" content={image ? image : 'https://i.imgur.com/O6DPyTR.png'} key="ogimage" />
+            <meta property="og:image" content={image ? image : 'https://i.imgur.com/a5xbsi0.png'} key="ogimage" />
             <meta property="og:site_name" content={'threadRoll'} key="ogsitename" />
             <meta property="og:title" content={arTitle ? arTitle : title} key="ogtitle" />
             <meta property="og:description" content={description} key="ogdesc" /> 
