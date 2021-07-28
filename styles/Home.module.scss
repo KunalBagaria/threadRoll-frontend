@@ -17,18 +17,18 @@
 .mainContent {
   border-left: 0.1vw solid rgb(255, 255, 255, 0.2);
   border-right: 0.1vw solid rgb(255, 255, 255, 0.2);
-  width: 43.5%;
+  width: 57.5%;
   & {
     @media only screen and (max-width: 1200px) {
         width: 70%;
     }
     @media only screen and (max-width: 900px) {
-      width: 80%;
+      width: 100%;
     }
     @media only screen and (max-width: 600px) {
       width: 100%;
     }
-}
+  }
 }
 
 .nav {
@@ -47,14 +47,17 @@
 
 .overFlowY {
   height: 100vh;
-  padding-bottom: calc(50px + 5vw);
+  width: 75%;
+  & {
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
+    @media only screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+  overflow-x: hidden;
   overflow-y: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.overFlowY::-webkit-scrollbar {
-  display: none;
 }
 
 .parseParent {

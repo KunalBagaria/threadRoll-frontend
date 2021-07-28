@@ -44,13 +44,14 @@ export default function Home() {
 
         <Sidebar active="Home" />
 
+        <div className={styles.overFlowY}>
+
         <div className={styles.mainContent}>
           <div className={styles.nav}>
             <h1 className={styles.pageName}>Home</h1>
             <MobileMenu />
           </div>
 
-          <div className={styles.overFlowY}>
 
             <div className={styles.parseParent}>
               {isLoading && (
@@ -108,10 +109,10 @@ export default function Home() {
             </div>
 
           </div>
-        </div>
         
         {/* Right Sidebar Here */}
         <RightSidebar active="Home" />
+        </div>
 
 
       </div>

@@ -63,6 +63,8 @@ export default function ArticlePage() {
             <Meta title={"Article / threadRoll"} arTitle={article.title} description={article.description ? article.description : 'Roll articles into a twitter thread'} image={article.image} />
             <div className={styles.mainFlex}>
                 <Sidebar active="Article" />
+                <div className={styles.overFlowY}>
+                
                 <div className={styles.mainContent}>
 
                     <div className={styles.nav}>
@@ -83,7 +85,6 @@ export default function ArticlePage() {
                         </div>
                     )}
 
-                    <div className={styles.overFlowY}>
                         {error && (
                             <p style={{ textAlign: 'center', marginTop: 'calc(50px + 5vw)', color: 'rgb(255, 255, 255, 0.5)' }}>There was an error, please try with a valid link.</p>
                         )}
@@ -94,8 +95,8 @@ export default function ArticlePage() {
                             ))
                         )}
                     </div>
+                    <RightSidebar />
                 </div>
-                <RightSidebar />
             </div>
         </>
     )

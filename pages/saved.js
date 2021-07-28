@@ -40,6 +40,7 @@ export default function Article() {
         <div className={styles.mainFlex}>
           <Sidebar active="Saved" />
 
+        <div className={styles.overFlowY}>
           <div className={styles.mainContent}>
             <div className={styles.nav}>
               <div className={styles.back} onClick={() => router.back()}>
@@ -50,6 +51,7 @@ export default function Article() {
               <h1 className={styles.pageName}>Saved</h1>
               <MobileMenu />
             </div>
+
             {loading && (
                 <div className={styles.loading}>
                   <div style={{ width: 'calc(40px + 1vw)', height: 'calc(40px + 1vw)', marginTop: '10vh' }}>
@@ -57,16 +59,15 @@ export default function Article() {
                   </div>
                 </div>
               )}
-              <div className={styles.overFlowY}>
                 {!loading && articles[0] && (
                   articles.map((article, index) => (
                     <TweetPreview data={article} key={index} index={index} saved={articles.map((article) => article.url)} />
                   ))
                 )}
               </div>
-          </div>
-
-          <RightSidebar />
+            <RightSidebar />
+            
+        </div>
         </div>
     </>
   )

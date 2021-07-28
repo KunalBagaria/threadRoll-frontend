@@ -37,6 +37,7 @@ export default function Article() {
         <Meta title="Trending / readRoll" description="Roll articles into a twitter thread" />
         <div className={styles.mainFlex}>
           <Sidebar active="Trending" />
+        <div className={styles.overFlowY}>
           <div className={styles.mainContent}>
             <div className={styles.nav}>
               <div className={styles.back} onClick={() => router.back()}>
@@ -56,7 +57,6 @@ export default function Article() {
               </div>
             )}
 
-            <div className={styles.overFlowY}>
               <div className={styles.tweetsFlex}>
                 {!loading && articles[0] && (
                   articles.map((article, index) => (
@@ -65,9 +65,9 @@ export default function Article() {
                 )}
               </div>
             </div>
-          </div>
           
           <RightSidebar />
+          </div>
 
         </div>
     </>
